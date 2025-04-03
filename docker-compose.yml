@@ -1,0 +1,29 @@
+services:
+  server:
+    build: ./server
+    
+    networks:
+      static-network:
+        ipv4_address: 172.20.0.5
+    
+  
+  client:
+    build: ./client
+
+    depends_on:
+      server:
+        condition: service_started
+        restart: true
+
+    ports:
+      - "9500:9500"
+    
+    networks:
+      static-network:
+        ipv4_address: 172.20.0.10
+
+networks:
+  static-network:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
