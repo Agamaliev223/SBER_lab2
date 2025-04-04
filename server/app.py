@@ -17,7 +17,7 @@ app.add_middleware(
 
 @app.get('/')
 async def root():
-    return {'server_time': datetime.now(ZoneInfo('Asia/Yekaterinburg'))}
+    return {'response': "Проверка связи"}
 
 if __name__ == '__main__':
     uvicorn.run(app, host='0.0.0.0', port=9000)
